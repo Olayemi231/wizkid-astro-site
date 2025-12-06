@@ -17,7 +17,6 @@ const songs = [
 const videoURL = "https://www.youtube.com/embed/jipQpjUA_o8";
 ---
 
-<!-- hideFooter={true} will be used in Layout.astro (step 3) -->
 <Layout title="Wizkid Playlist" hideFooter={true}>
   <Header />
 
@@ -25,7 +24,7 @@ const videoURL = "https://www.youtube.com/embed/jipQpjUA_o8";
     <h1>Wizkid Playlist</h1>
 
     <div class="content-row">
-      <!-- VIDEO ON THE LEFT -->
+     
       <div class="video-box">
         <iframe
           src={videoURL}
@@ -34,7 +33,6 @@ const videoURL = "https://www.youtube.com/embed/jipQpjUA_o8";
         ></iframe>
       </div>
 
-      <!-- SONGS ON THE RIGHT -->
       <div class="songs-box">
         <button id="shuffleBtn" class="shuffle-btn">🔀 Shuffle Playlist</button>
 
@@ -52,14 +50,12 @@ const videoURL = "https://www.youtube.com/embed/jipQpjUA_o8";
   const list = document.getElementById("songList");
   const shuffleBtn = document.getElementById("shuffleBtn");
 
-  // Helper: read current songs from the DOM
   function getSongsFromDOM() {
     return Array.from(list.querySelectorAll(".playlist-item")).map(
       (li) => li.textContent
     );
   }
 
-  // Helper: render an array of song strings into the <ul>
   function renderSongs(arr) {
     list.innerHTML = "";
     arr.forEach((text) => {
@@ -70,7 +66,6 @@ const videoURL = "https://www.youtube.com/embed/jipQpjUA_o8";
     });
   }
 
-  // Fisher–Yates shuffle
   function shuffleArray(arr) {
     const copy = [...arr];
     for (let i = copy.length - 1; i > 0; i--) {
