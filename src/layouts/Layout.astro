@@ -2,23 +2,23 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
-const {title = "Wizkid Fan Hub"} = Astro.pops;
+
+const title =
+  (Astro.props && Astro.props.title) ??
+  Astro.frontmatter?.title ??
+  "Wizkid Site";
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>{title}/title>
-
+    <title>{title}</title>
   </head>
-
   <body>
     <Header />
-
     <main>
       <slot />
     </main>
-
     <Footer />
   </body>
 </html>

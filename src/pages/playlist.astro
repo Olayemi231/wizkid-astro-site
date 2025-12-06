@@ -1,7 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 
 const songs = [
   "Essence",
@@ -12,22 +10,18 @@ const songs = [
   "True Love",
   "Energy",
   "Mood",
-  "Daddy Yo"
+  "Daddy Yo",
 ];
 ---
 
 <Layout title="Wizkid Playlist">
-  <Header />
-
   <main class="playlist-container">
     <h1>Wizkid Playlist</h1>
 
     <ul>
-      {songs.map(song => (
+      {songs.map((song) => (
         <li>{song}</li>
       ))}
     </ul>
   </main>
-
-  <Footer />
 </Layout>
