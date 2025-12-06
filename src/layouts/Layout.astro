@@ -1,13 +1,501 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import "../styles/global.css";
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Wizkid Fan Site</title>
+
+    <style is:global>
+      /* -----------------------------------------------------------
+   GLOBAL RESET & BASE STYLES
+----------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top, #111827 0%, #020617 55%, #000 100%);
+  color: #e5e7eb;
+}
+
+/* Links */
+a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Headings */
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 700;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.9rem;
+  letter-spacing: 0.06em;
+}
+
+h2 {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+/* Main layout – leaves space for fixed header */
+main {
+  max-width: 1100px;
+  margin: 110px auto 80px;
+  padding: 0 24px;
+}
+
+/* -----------------------------------------------------------
+   HEADER
+----------------------------------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.96);
+  border-bottom: 1px solid #1f2937;
+  padding: 10px 34px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.left-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.left-info p {
+  margin: 0;
+  line-height: 1.2;
+  color: #e5e7eb;
+}
+
+/* Nav */
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 24px;
+}
+
+.navbar a {
+  color: #e5e7eb;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.navbar a:hover {
+  color: #38bdf8;
+  transform: translateY(-1px);
+}
+
+/* -----------------------------------------------------------
+   FOOTER
+----------------------------------------------------------- */
+.footer {
+  width: 100%;
+  background: #020617;
+  border-top: 1px solid #1f2937;
+  padding: 14px 34px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+.footer-left p,
+.footer-right p {
+  margin: 2px 0;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* -----------------------------------------------------------
+   HOME PAGE
+----------------------------------------------------------- */
+.home-container {
+  text-align: center;
+}
+
+.explore-link {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 22px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(90deg, #22d3ee, #0ea5e9);
+  color: #0b1120;
+  text-decoration: none;
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.explore-link:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+/* Central home card */
+.home-card {
+  margin: 34px auto 0;
+  max-width: 440px;
+  background: radial-gradient(circle at top, #1f2937 0%, #020617 60%);
+  border-radius: 22px;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.85),
+    0 0 40px rgba(56, 189, 248, 0.25);
+  padding: 26px 26px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.home-img {
+  width: 210px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 2px solid rgba(248, 250, 252, 0.6);
+}
+
+.home-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+/* -----------------------------------------------------------
+   ABOUT PAGE
+----------------------------------------------------------- */
+.about-card {
+  margin: 34px auto 0;
+  padding: 26px 26px 30px;
+  max-width: 880px;
+  background: radial-gradient(circle at top, #1f2937 0%, #020617 60%);
+  border-radius: 22px;
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.85),
+    0 0 38px rgba(59, 130, 246, 0.18);
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 26px;
+  align-items: center;
+}
+
+.about-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 2px solid rgba(248, 250, 252, 0.7);
+}
+
+.about-card p {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #d1d5db;
+}
+
+/* -----------------------------------------------------------
+   NEWS PAGE
+----------------------------------------------------------- */
+.news-grid {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+  justify-content: center;
+}
+
+.news-card {
+  width: 240px;
+  background: radial-gradient(circle at top, #111827 0%, #020617 65%);
+  border-radius: 20px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.85),
+    0 0 26px rgba(56, 189, 248, 0.25);
+  padding: 14px 14px 18px;
+  text-align: left;
+  color: #e5e7eb;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    border-color 0.15s ease, background 0.15s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 22px 45px rgba(0, 0, 0, 0.9),
+    0 0 32px rgba(56, 189, 248, 0.35);
+  border-color: rgba(56, 189, 248, 0.55);
+  background: radial-gradient(circle at top, #0f172a 0%, #020617 70%);
+}
+
+.news-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 10px;
+}
+
+.news-card h3 {
+  margin: 4px 0 6px;
+  font-size: 0.98rem;
+  text-align: left;
+}
+
+.news-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+/* -----------------------------------------------------------
+   PLAYLIST PAGE
+----------------------------------------------------------- */
+/* PLAYLIST PAGE — FIXED LAYOUT & STYLING */
+.playlist-container {
+  max-width: 900px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.playlist-title {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.playlist-sub {
+  color: #d1d5db;
+  margin-bottom: 20px;
+}
+
+/* GLOW CARD FOR PLAYLIST */
+.playlist-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 30px;
+  border-radius: 20px;
+
+  background: radial-gradient(circle at center, #1e293b 0%, #020617 70%);
+  border: 1px solid rgba(96, 165, 250, 0.45);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.7),
+    0 0 38px rgba(59, 130, 246, 0.25);
+}
+
+/* LEFT SIDE (SONG LIST) */
+.songs-section {
+  flex: 1;
+  text-align: left;
+}
+
+.shuffle-btn {
+  background: #22c55e;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
+}
+.shuffle-btn:hover {
+  background: #16a34a;
+}
+
+.songs-list ul {
+  list-style: disc;
+  margin-left: 20px;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: #e5e7eb;
+}
+
+/* RIGHT SIDE (VIDEO SECTION) */
+.video-section {
+  flex: 1.2;
+  text-align: center;
+}
+
+.video-section h3 {
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 250px;
+  border-radius: 12px;
+  border: 2px solid rgba(248, 250, 252, 0.7);
+}
+
+/* RESPONSIVE FIX FOR SMALL SCREENS */
+@media (max-width: 768px) {
+  .playlist-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .songs-section {
+    text-align: center;
+  }
+
+  .songs-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .video-wrapper iframe {
+    height: 200px;
+  }
+}
+/* -----------------------------------------------------------
+   POST PAGE
+----------------------------------------------------------- */
+.post-container {
+  display: flex;
+  justify-content: center;
+}
+
+.post-card {
+  width: 100%;
+  max-width: 780px;
+  padding: 26px 26px 32px;
+  background: radial-gradient(circle at top, #1f2937 0%, #020617 60%);
+  border-radius: 22px;
+  border: 1px solid rgba(96, 165, 250, 0.45);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.9),
+    0 0 38px rgba(59, 130, 246, 0.25);
+}
+
+.post-card h1 {
+  text-align: left;
+  font-size: 1.4rem;
+}
+
+.post-date {
+  margin: 6px 0 16px;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.post-img {
+  width: 100%;
+  max-width: 520px;
+  display: block;
+  margin: 0 auto 18px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 2px solid rgba(248, 250, 252, 0.7);
+}
+
+.post-body {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: #e5e7eb;
+}
+
+/* -----------------------------------------------------------
+   RESPONSIVE
+----------------------------------------------------------- */
+@media (max-width: 900px) {
+  .about-card {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .about-img {
+    height: 240px;
+  }
+
+  main {
+    margin-top: 100px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header,
+  .footer {
+    padding: 10px 16px;
+  }
+
+  .navbar ul {
+    gap: 14px;
+    font-size: 0.8rem;
+  }
+
+  .home-card,
+  .about-card,
+  .playlist-card,
+  .post-card {
+    padding: 20px 18px 24px;
+  }
+
+  .home-img {
+    width: 180px;
+    height: 230px;
+  }
+
+  .news-card {
+    width: 85%;
+    max-width: 260px;
+  }
+}
+    </style>
+
   </head>
 
   <body>
