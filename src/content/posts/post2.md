@@ -1,4 +1,5 @@
 ---
+layout: ../../layouts/PostLayout.astro
 title: "Wizkid Set to Drop New Album"
 date: "2024-03-05"
 excerpt: "wizkid returns with a brand new era"

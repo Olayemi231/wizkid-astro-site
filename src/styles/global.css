@@ -290,16 +290,27 @@ main {
 ----------------------------------------------------------- */
 /* PLAYLIST PAGE — FIXED LAYOUT & STYLING */
 .playlist-container {
-  max-width: 900px;
-  margin: 40px auto;
   text-align: center;
-  padding: 20px;
+  padding: 2rem 1rem;
 }
 
 .playlist-title {
   font-size: 2rem;
   color: #ffffff;
   margin-bottom: 10px;
+}
+
+.playlist-list{
+    list-style: none;
+    padding:0;
+    margin: 1rem auto;
+}
+
+.playlist-list li{
+    font-size: 1.3rem;
+    margin: 8px 0;
+    color:#fff;
+    letter-spacing: 0.5px;
 }
 
 .playlist-sub {

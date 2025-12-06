@@ -1,4 +1,5 @@
 ---
+layout: ../../layouts/PostLayout.astro
 title: "Tour Announcement"
 date: "2024-02-15"
 excerpt: Global tour dates coming soon
