@@ -1,13 +1,15 @@
 ---
+import "../../styles/global.css";               // ✅ use global styles
 import { getCollection } from "astro:content";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
-  return posts.map(post => ({
+
+  return posts.map((post) => ({
     params: { slug: post.slug },
-    props: { post }
+    props: { post },
   }));
 }
 
@@ -18,7 +20,6 @@ const { title, date, image } = post.data;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/src/styles/global.css" />
     <title>{title}</title>
   </head>
 
@@ -31,9 +32,9 @@ const { title, date, image } = post.data;
         <p class="post-date">{date}</p>
 
         {image && <img src={image} class="post-img" alt={title} />}
-        
+
         <div class="post-body">
-         {post.body}
+          {post.body}
         </div>
       </div>
     </main>
