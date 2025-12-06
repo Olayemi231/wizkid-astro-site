@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/PostLayout.astro 
 title: "From Lagos to Billboard"
 date: "2024-01-28"
 excerpt: "Wizkid dominates global charts with new achievements."
