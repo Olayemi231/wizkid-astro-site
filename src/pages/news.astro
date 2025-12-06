@@ -1,0 +1,36 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+---
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>News & Tour Updates</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+
+  <body>
+    <Header />
+
+    <main>
+      <h1>News & Tour Updates</h1>
+      <h2>Latest moments, achievements, and Starboy headlines.</h2>
+
+      <div class="news-grid">
+        {posts.map((post) => (
+          <a href={`/posts/${post.slug}`} class="news-card">
+            <img src={post.data.image} class="news-img" />
+            <h3>{post.data.title}</h3>
+            <p>{post.data.excerpt}</p>
+          </a>
+        ))}
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

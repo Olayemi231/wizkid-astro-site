@@ -1,0 +1,31 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<html>
+  <head>
+	<meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <title>Wizkid Fan Hub</title>
+  </head>
+
+  <body>
+    <Header />
+
+    <main class="home-container">
+      <h1>Wizkid</h1>
+      <h2>Welcome to the ultimate Wizkid fan experience music, stories, and more.</h2>
+
+      <a href="/news" class="explore-link">Explore News & Tour</a>
+
+      <div class="home-card">
+        <img src="/images/wizkid-hero.jpg" class="home-img" alt="Wizkid" />
+        <p class="home-desc">
+          Dive into Wizkid’s global journey — breaking boundaries, dominating charts,and redefining Afrobeats.</p>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

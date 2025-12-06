@@ -1,0 +1,75 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const songs = [
+  "Essence",
+  "Ginger",
+  "Come Closer",
+  "Ojuelegba",
+  "No Stress",
+  "True Love",
+  "Energy",
+  "Mood",
+  "Daddy Yo"
+];
+
+// Shuffle function
+const shuffle = () => {
+  const copy = [...songs];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+};
+
+const shuffledSongs = shuffle();
+---
+
+<html>
+    <head>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    </head>
+  <body>
+    <Header />
+
+    <main class="playlist-container">
+      <h1 class="playlist-title">Wizkid Playlist</h1>
+      <p class="playlist-sub">Starboy hits, favourites, and timeless classics.</p>
+
+      <!-- CARD WRAPPER -->
+      <div class="playlist-card">
+
+        <!-- LEFT SIDE: SONG LIST -->
+        <div class="songs-section">
+          <button class="shuffle-btn" onClick="location.reload()">Shuffle 💿✨</button>
+
+          <div class="songs-list">
+            <ul>
+              {shuffledSongs.map((song) => (
+                <li>{song}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE: VIDEO -->
+        <div class="video-section">
+          <h3>Featured Performance</h3>
+
+          <div class="video-wrapper">
+            <iframe 
+              src="https://www.youtube.com/embed/jipQpjUA_o8?autoplay=0"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,43 @@
+---
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { title, date, image } = post.data;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <Header />
+
+    <main class="post-container">
+      <div class="post-card">
+        <h1>{title}</h1>
+        <p class="post-date">{date}</p>
+
+        {image && <img src={image} class="post-img" alt={title} />}
+
+        <div class="post-body">
+          {post.body}
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>
