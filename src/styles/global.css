@@ -288,119 +288,64 @@ main {
 /* -----------------------------------------------------------
    PLAYLIST PAGE
 ----------------------------------------------------------- */
-/* PLAYLIST PAGE — FIXED LAYOUT & STYLING */
-.playlist-container {
+.playlist-wrapper {
+  max-width: 1100px;
+  margin: 40px auto 80px;
+  color: #fff;
+}
+
+.playlist-wrapper h1 {
   text-align: center;
-  padding: 2rem 1rem;
-}
-
-.playlist-title {
-  font-size: 2rem;
-  color: #ffffff;
-  margin-bottom: 10px;
-}
-
-.playlist-list{
-    list-style: none;
-    padding:0;
-    margin: 1rem auto;
-}
-
-.playlist-list li{
-    font-size: 1.3rem;
-    margin: 8px 0;
-    color:#fff;
-    letter-spacing: 0.5px;
-}
-
-.playlist-sub {
-  color: #d1d5db;
   margin-bottom: 20px;
 }
 
-/* GLOW CARD FOR PLAYLIST */
-.playlist-card {
+.content-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
-  gap: 30px;
-  padding: 30px;
-  border-radius: 20px;
-
-  background: radial-gradient(circle at center, #1e293b 0%, #020617 70%);
-  border: 1px solid rgba(96, 165, 250, 0.45);
-  box-shadow:
-    0 18px 40px rgba(0, 0, 0, 0.7),
-    0 0 38px rgba(59, 130, 246, 0.25);
+  gap: 60px;          /* space between video and songs */
 }
 
-/* LEFT SIDE (SONG LIST) */
-.songs-section {
-  flex: 1;
+/* bigger video */
+.video-box iframe {
+  width: 640px;
+  height: 360px;
+  border-radius: 10px;
+  border: none;
+}
+
+.songs-box {
+  min-width: 200px;
   text-align: left;
 }
 
 .shuffle-btn {
-  background: #22c55e;
-  color: white;
-  padding: 8px 18px;
-  border-radius: 20px;
+  background: #00d4ff;
+  padding: 10px 20px;
   border: none;
+  border-radius: 6px;
+  color: #000;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: 0.2s ease;
+  margin-bottom: 15px;
 }
+
 .shuffle-btn:hover {
-  background: #16a34a;
+  background: #00aacc;
 }
 
-.songs-list ul {
-  list-style: disc;
-  margin-left: 20px;
-  line-height: 1.8;
-  font-size: 1rem;
-  color: #e5e7eb;
+.playlist-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* RIGHT SIDE (VIDEO SECTION) */
-.video-section {
-  flex: 1.2;
-  text-align: center;
+.playlist-item {
+  padding: 6px 0;
+  font-size: 1.05rem;
 }
 
-.video-section h3 {
-  margin-bottom: 10px;
-  color: #ffffff;
-}
 
-.video-wrapper iframe {
-  width: 100%;
-  height: 250px;
-  border-radius: 12px;
-  border: 2px solid rgba(248, 250, 252, 0.7);
-}
-
-/* RESPONSIVE FIX FOR SMALL SCREENS */
-@media (max-width: 768px) {
-  .playlist-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .songs-section {
-    text-align: center;
-  }
-
-  .songs-list ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .video-wrapper iframe {
-    height: 200px;
-  }
-}
 /* -----------------------------------------------------------
    POST PAGE
 ----------------------------------------------------------- */

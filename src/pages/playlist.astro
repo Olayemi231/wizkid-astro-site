@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 
 const songs = [
   "Essence",
@@ -14,20 +13,76 @@ const songs = [
   "Mood",
   "Daddy Yo"
 ];
+
+const videoURL = "https://www.youtube.com/embed/jipQpjUA_o8";
 ---
 
-<Layout title="Wizkid Playlist">
+<!-- hideFooter={true} will be used in Layout.astro (step 3) -->
+<Layout title="Wizkid Playlist" hideFooter={true}>
   <Header />
 
-  <main class="playlist-container">
+  <main class="playlist-wrapper">
     <h1>Wizkid Playlist</h1>
 
-    <ul class="playlist-list">
-      {songs.map(song => (
-        <li>{song}</li>
-      ))}
-    </ul>
-  </main>
+    <div class="content-row">
+      <!-- VIDEO ON THE LEFT -->
+      <div class="video-box">
+        <iframe
+          src={videoURL}
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        ></iframe>
+      </div>
 
-  <Footer />
+      <!-- SONGS ON THE RIGHT -->
+      <div class="songs-box">
+        <button id="shuffleBtn" class="shuffle-btn">🔀 Shuffle Playlist</button>
+
+        <ul id="songList" class="playlist-list">
+          {songs.map((song) => (
+            <li class="playlist-item">{song}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </main>
 </Layout>
+
+<script>
+  const list = document.getElementById("songList");
+  const shuffleBtn = document.getElementById("shuffleBtn");
+
+  // Helper: read current songs from the DOM
+  function getSongsFromDOM() {
+    return Array.from(list.querySelectorAll(".playlist-item")).map(
+      (li) => li.textContent
+    );
+  }
+
+  // Helper: render an array of song strings into the <ul>
+  function renderSongs(arr) {
+    list.innerHTML = "";
+    arr.forEach((text) => {
+      const li = document.createElement("li");
+      li.className = "playlist-item";
+      li.textContent = text;
+      list.appendChild(li);
+    });
+  }
+
+  // Fisher–Yates shuffle
+  function shuffleArray(arr) {
+    const copy = [...arr];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  shuffleBtn.addEventListener("click", () => {
+    const currentSongs = getSongsFromDOM();
+    const shuffled = shuffleArray(currentSongs);
+    renderSongs(shuffled);
+  });
+</script>
